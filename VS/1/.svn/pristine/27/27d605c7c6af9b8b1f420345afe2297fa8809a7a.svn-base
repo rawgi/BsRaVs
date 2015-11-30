@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <vfilesystem_api.h>
+
+int main(int argc, char **args) {
+	FolderID root = fs_init();
+	FolderID cur = root;
+	char in;
+	int exit = 0;
+	printf("\nroot/  ");
+	do{
+		scanf("%s",&in);
+		switch(in){
+		case "newFo": 	printf("\nfolder name: ");
+				scanf("%s",&in);
+				cur = fs_new_folder(in,cur->id);
+				break;
+		default: printf("\nunknown command %s",in);
+		}
+	}while(!exit);
+	fs_destroy();
+
+	return 0;
+}

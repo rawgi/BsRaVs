@@ -1,0 +1,196 @@
+# mips_uebersicht.txt -- Uebersicht MIPS-Assembler
+# azuepke, 2015-11-16: initial
+
+Literatur:
+- Larus Spim PDF (Englisch):
+  https://wwwvs.cs.hs-rm.de/lehre/material/intern/br15ws/uebungen/Spim_documentation.pdf
+- Nitzsche Spim PDF (Deutsch):
+  http://www.inf.fu-berlin.de/lehre/SS00/19502-V/spimdoku.pdf
+
+
+MIPS 101 -- Instruktionen
+==========================
+
+	// ALU
+	move		rD, rA				rD = rA
+	li			rD, simm16			rD = simm16
+	lui			rD, uimm16			rD = uimm16 << 16
+	la			rD, target			rD = target
+	add			rD, rA, rB			rD = rA + rB
+	addi		rD, rA, simm16		rD = rA + simm16
+	addiu		rD, rA, uimm16		rD = rA + uimm16
+	...
+	and			rD, rA, rB			rD = rA & rB
+	andi		rD, rA, imm16		rD = rA & imm16
+	or			rD, rA, rB			rD = rA | rB
+	ori			rD, rA, imm16		rD = rA | imm16
+
+	// load/store
+	lb			rD, soff16(rA)		rD = *(char*)mem[rA + soff16]
+	lw			rD, soff16(rA)		rD = *(int*)mem[rA + soff16]
+
+	sb			rB, soff16(rA)		*(char*)mem[rA + soff16] = rB
+	sw			rB, soff16(rA)		*(int*)mem[rA + soff16] = rB
+
+	// compare: set equal, set not equal, ...
+	seq			rD, rA, rB			if (rA == rB) rD = 1; else rD = 0;
+	sne			rD, rA, rB			if (rA != rB) rD = 1; else rD = 0;
+	sgt			rD, rA, rB			if (rA > rB) rD = 1; else rD = 0;
+	sge			rD, rA, rB			if (rA >= rB) rD = 1; else rD = 0;
+	slt			rD, rA, rB			if (rA < rB) rD = 1; else rD = 0;
+	sle			rD, rA, rB			if (rA <= rB) rD = 1; else rD = 0;
+
+	// branches
+	j			target				pc = target
+	jal			target				$31 = pc+4, pc = target
+	jr			rA					pc = rA
+	beq			rA, rB, target		if (rA == rB) pc = target
+	bne			rA, rB, target		if (rA != rB) pc = target
+	bgt			rA, rB, target		if (rA > rB) pc = target
+	...
+
+
+MIPS 101 -- Register
+=====================
+
+					preserved?
+	$0		$zero					Konstant 0
+	$2		$v0						Return-Wert eines Funktionsaufrufs
+									gewuenschte System-Call-Funktion
+	$4		$a0						erstes Argument
+		...
+	$7		$a3						viertes Argument
+	$8		$t0						Temp-Variablen
+		...
+	$15		$t7						Temp-Variablen
+	$16		$s0			X			Saved Temps
+		...
+	$23		$s7			X			Saved Temps
+	$29		$sp			X			Stack-Pointer
+	$31		$ra						Return-Address
+
+
+MIPS 101 -- Syscalls
+=====================
+
+	li		$a0, 42					print Integer in $a0
+	li		$v0, 1
+	syscall
+
+	la		$a0, string				print String in $a0
+	li		$v0, 4
+	syscall
+
+	li		$v0, 5					read Integer
+	syscall
+	# $v0 contains integer
+
+	la		$a0, buffer				read to String in $a0
+	li		$a1, 80					buffer size
+	li		$v0, 8
+	syscall
+
+
+MIPS 101 -- Pseudo-Instruktionen
+=================================
+
+.data								Datenbereich, fuer globale Variablen
+str:	.asciiz "Hallo, Welt!\n"	char str[] = "Hallo, Welt!\n";
+buf:	.space 100					char buf[100];
+x:		.word	47					int x = 47;
+y:		.byte	11					char y = 11;
+
+.text								Codebereich
+main:
+		...
+
+
+MIPS 101 -- Prolog & Epilog
+============================
+
+main:
+	...
+	jal		eine_funktion
+	...
+	jr		$ra						Ruecksprung zum Aufrufer von main
+
+eine_funktion:
+	sub		$sp, $sp, 12			Prolog
+	sw		$ra, 8($sp)
+	sw		$s0, 4($sp)				int i;
+	sw		$s1, 0($sp)				int j;
+
+	...
+	jal		eine_zweite_funktion
+	...
+
+	lw		$s1, 0($sp)				Epilog
+	lw		$s0, 4($sp)
+	lw		$ra, 8($sp)
+	add		$sp, $sp, 12
+	jr		$ra						Ruecksprung zu main
+
+eine_zweite_funktion:
+	...
+	jr		$ra						Ruecksprung zu eine_funktion
+
+	
+MIPS 101 -- Addressierungsmodi
+==============================
+
+Registeradressierung
+    add $t0, $t1, $t2
+
+C-Ã„quivalent:
+    a = b + c;
+
+
+Unmittelbare (immediate) Adressierung:
+    addi $t0, $t0, 2
+
+C-Ã„quivalent:
+    a += 2;
+
+
+Register-indirekte Adressierung:
+
+    # Wert aus Speicher von der Adresse laden, die im angegebenen Register steht
+    mylabel: .word 16, 32
+    li $t1, mylabel
+    lw $t0, ($t1)
+
+C-Ã„quivalent:
+    int mylabel[2] = {16, 32};
+    b = mylabel;
+    a = *b;
+
+
+direkte Adressierung:
+
+    # Wert aus Speicher von der angegebenen Adresse laden, die zuvor um eine
+Konstante erhÃ¶ht oder verringert wird.
+    mylabel: .word 16, 32
+    
+    lw $t0, mylabel
+    lw $t1, mylabel + 4
+
+C-Ã„quivalent:
+    int mylabel[2] = {16, 32};
+    a = *mylabel
+    b = *(mylabel + 1)
+
+
+indexierte Adressierung:
+    
+    # Wert aus Speicher von der angegeben Adresse laden (plus zusÃ¤tzlichem
+Offset aus angegebenem Register)
+    mylabel: .word 16, 32
+    li $t1, 4
+    lw $t0, mylabel($t1)
+
+C-Ã„quivalent:
+    int mylabel[2] = {16, 32};
+    b = 4;
+    a = *(mylabel + b/4)
+    
+	

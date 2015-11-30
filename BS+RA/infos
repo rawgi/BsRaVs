@@ -1,0 +1,17 @@
+marc.bommert@hs-rm.de
+
+repository: https://svn.cs.hs-rm
+
+svn checkout <url>
+svn up
+svn status
+svn diff
+svn diff <datei>
+svn commit
+svn revert
+svn revert <datei>
+
+man <kapitel> <funktionsname>
+apropos <schlagwort>
+
+objdumb zum disassemblieren

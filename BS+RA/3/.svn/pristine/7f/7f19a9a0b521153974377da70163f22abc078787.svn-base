@@ -1,0 +1,71 @@
+##
+## Abgabe fuer Aufgabe 3.1 "Zaehlen" und 3.2 "Aendern"
+##
+
+# Datenbereich:
+.data
+
+
+# Codebereich:
+.text
+
+# Prozedur "main":
+main:
+	# Prolog
+	# Hier Prolog einfuegen, falls Ihr Code Register veraendert
+	# (Tipp: Das wird er tun)
+
+	# Hier Code einfuegen. Bitte in der Main Prozedur nur
+	# Ein- und Ausgabeaufgaben durchfuehren. Berechnungen
+	# bitte in neuen Prozeduren machen
+
+	# Epilog
+	# ... hier Epilog einfuegen ...
+
+	# Ende
+	jr		$ra
+
+
+# Prozedur "gross":
+#
+# Parameter in Register $a0: Zeigt auf den String
+# Ergebnis in Register $v0 ist die Anzahl der Grossbuchstaben
+gross:
+	# Prolog
+
+	# Bitte den Inhalt dieser Prozedur durch etwas Sinnvolles ersetzen
+
+	# Epilog
+
+	# Ruecksprung
+	jr		$ra						# return result;
+
+
+# Prozedur "klein":
+#
+# Parameter in Register $a0: Zeigt auf den String
+# Ergebnis in Register $v0 ist die Anzahl der Kleinbuchstaben
+klein:
+	# Prolog
+
+	# Bitte den Inhalt dieser Prozedur durch etwas Sinnvolles ersetzen
+
+	# Epilog
+
+	# Ruecksprung
+	jr		$ra						# return result;
+
+
+# Prozedur "tausche":
+#
+# Parameter in Register $a0: Zeigt auf den String
+# Ergebnis in Register $v0 zeigt auf den geaenderten String
+tausche:
+	# Prolog
+
+	# Bitte den Inhalt dieser Prozedur durch etwas Sinnvolles ersetzen
+
+	# Epilog
+
+	# Ruecksprung
+	jr		$ra						# return result;

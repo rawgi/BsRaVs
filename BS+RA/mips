@@ -1,0 +1,113 @@
+
+REGISTER
+
+
+Number			Name			Description
+
+$0				$zero			Always zero
+$1				$at				Reserved for assembler
+$2, $3			$v0, $v1		First and second return values, respectively
+$4, ..., $7		$a0, ..., $a3	First four arguments to functions
+$8, ..., $15	$t0, ..., $t7	Temporary registers
+$16, ..., $23	$s0, ..., $s7	Saved registers
+$24, $25		$t8, $t9		More temporary registers
+$26, $27		$k0, $k1		Reserved for kernel (operating system)
+$28				$gp				Global pointer
+$29				$sp				Stack pointer
+$30				$fp				Frame pointer
+$31				$ra				Return address
+
+
+SYSTEMAUFRUFE
+
+
+Service					System Call Code		Arguments									Result
+
+print integer			1						$a0 = value									(none)
+print float				2						$f12 = float value							(none)
+print double			3						$f12 = double value							(none)
+print string			4						$a0 = address of string						(none)
+read integer			5						(none)										$v0 = value read
+read float				6						(none)										$f0 = value read
+read double				7						(none)										$f0 = value read
+read string				8						$a0 = address where string to be stored
+												$a1 = number of characters to read + 1		(none)
+memory allocation		9						$a0 = number of bytes of storage desired	$v0 = address of block
+exit (end of program)	10						(none)										(none)
+print character			11						$a0 = integer								(none)
+read character			12						(none)										char in $v0
+
+
+
+ADRESSIERUNGSMODI
+
+Registeradressierung
+	add $t0, $t1, $t2
+
+C-Ã„quivalent:
+	a = b + c;
+
+
+Unmittelbare Adressierung:
+	addi $t0, $t0, 2
+
+C-Ã„quivalent:
+	a += 2;
+
+
+Register-indirekte Adressierung:
+
+	Wert aus Speicher von der Adresse laden, die im angegebenen Register steht
+	mylabel: .word 32, 16
+	li $t1, mylabel
+	lw $t0, ($t1)
+
+C-Ã„quivalent:
+	int mylabel[2] = {16, 32};
+	b = mylabel;
+	a = *b;
+
+
+direkte Adressierung:
+
+	Wert aus Speicher von der angegebenen Adresse laden, die zuvor um eine Konstante erhÃ¶ht oder verringert wird.
+	mylabel: .word 32, 16
+	
+	lw $t0, mylabel
+	lw $t1, mylabel + 4
+
+C-Ã„quivalent:
+	int mylabel[2] = {16, 32};
+	a = *mylabel
+	a = *(mylabel + 1)
+
+
+indexierte Adressierung:
+	
+	Wert aus Speicher von der angegeben Adresse laden (plus zusÃ¤tzlichem Offset aus angegebenem Register)
+	mylabel: .word 32, 16
+	li $t1, 4
+	lw $t0, mylabel($t1)
+
+C-Ã„quivalent:
+	int mylabel[2] = {16, 32};
+	b = 4;
+	a = *(mylabel + b/4)
+
+
+MINI-PROLOG / MINI EPILOG
+
+
+.text
+
+meine_funktion:
+	# Prolog
+	addi $sp, $sp, -8
+	sw $ra, 4($sp)
+	sw $s0, ($sp)
+	
+	# Epilog
+	lw $ra, 4($sp)
+	lw $s0, ($sp)
+	addi $sp, $sp, 8
+	jr $ra
