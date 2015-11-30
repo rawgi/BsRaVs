@@ -5,6 +5,10 @@ import java.nio.ByteBuffer;
 public class FileInfoRequest implements Payload {
 	private int handle;
 
+	public FileInfoRequest(){
+		
+	}
+	
 	public FileInfoRequest(int handle) {
 		super();
 		this.handle = handle;

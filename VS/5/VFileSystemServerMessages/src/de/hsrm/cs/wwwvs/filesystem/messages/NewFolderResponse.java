@@ -5,13 +5,13 @@ import java.nio.ByteBuffer;
 public class NewFolderResponse implements Payload {
 	private int handle;
 
+	public NewFolderResponse() {
+		
+	}
+	
 	public NewFolderResponse(int handle) {
 		super();
 		this.handle = handle;
-	}
-
-	public NewFolderResponse() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getHandle() {

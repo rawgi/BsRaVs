@@ -8,15 +8,15 @@ public class FileInfoResponse implements Payload {
 	private int size;
 	private String name;
 
+	public FileInfoResponse() {
+		
+	}
+	
 	public FileInfoResponse(int parent, int size, String name) {
 		super();
 		this.parent = parent;
 		this.size = size;
 		this.name = name;
-	}
-
-	public FileInfoResponse() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getParent() {

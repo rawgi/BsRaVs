@@ -6,8 +6,8 @@ import java.nio.ByteBuffer;
 public class ReadFileResponse implements Payload {
 	private byte[] data;
 
-	public byte[] getData() {
-		return data;
+	public ReadFileResponse() {
+		
 	}
 
 	public ReadFileResponse(byte[] data) {
@@ -15,10 +15,10 @@ public class ReadFileResponse implements Payload {
 		this.data = data;
 	}
 
-	public ReadFileResponse() {
-		// TODO Auto-generated constructor stub
+	public byte[] getData() {
+		return data;
 	}
-
+	
 	@Override
 	public void unmarshall(ByteBuffer data) throws MarshallingException {
 		// TODO Auto-generated method stub

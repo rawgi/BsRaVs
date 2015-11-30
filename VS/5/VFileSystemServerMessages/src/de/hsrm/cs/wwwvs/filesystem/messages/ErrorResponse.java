@@ -6,14 +6,14 @@ public class ErrorResponse implements Payload {
 	private byte errorCode;
 	private String msg;
 
+	public ErrorResponse() {
+		
+	}
+	
 	public ErrorResponse(byte errorCode, String msg) {
 		super();
 		this.errorCode = errorCode;
 		this.msg = msg;
-	}
-
-	public ErrorResponse() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public byte getErrorCode() {

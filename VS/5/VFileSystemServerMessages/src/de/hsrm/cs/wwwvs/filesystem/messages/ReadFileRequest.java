@@ -8,6 +8,10 @@ public class ReadFileRequest implements Payload {
 	private int offset;
 	private int length;
 
+	public ReadFileRequest(){
+		
+	}
+	
 	public ReadFileRequest(int handle, int offset, int length) {
 		super();
 		this.handle = handle;

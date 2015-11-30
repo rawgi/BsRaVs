@@ -6,13 +6,13 @@ import java.nio.ByteBuffer;
 public class NewFileResponse implements Payload {
 	private int handle;
 
+	public NewFileResponse() {
+		
+	}
+	
 	public NewFileResponse(int handle) {
 		super();
 		this.handle = handle;
-	}
-
-	public NewFileResponse() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getHandle() {

@@ -7,6 +7,10 @@ public class WriteFileRequest implements Payload {
 	private int offset;
 	private byte[] data;
 
+	public WriteFileRequest(){
+		
+	}
+	
 	public WriteFileRequest(int handle, int offset, byte[] data) {
 		super();
 		this.handle = handle;
@@ -28,8 +32,10 @@ public class WriteFileRequest implements Payload {
 
 	@Override
 	public void unmarshall(ByteBuffer data) throws MarshallingException {
-		// TODO Auto-generated method stub
-		
+		handle = data.getInt();
+		offset = data.getInt();
+		data.getInt();											//length überspringen, um an das eigentliche array zu kommen
+		this.data = data.array();
 	}
 
 	@Override

@@ -6,6 +6,10 @@ import java.nio.ByteBuffer;
 public class FolderInfoRequest implements Payload {
 	private int handle;
 	
+	public FolderInfoRequest(){
+		
+	}
+	
 	public FolderInfoRequest(int handle) {
 		super();
 		this.handle = handle;

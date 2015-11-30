@@ -5,6 +5,10 @@ import java.nio.ByteBuffer;
 public class DeleteFileRequest implements Payload {
 	private int handle;
 
+	public DeleteFileRequest(){
+		
+	}
+	
 	public DeleteFileRequest(int handle) {
 		super();
 		this.handle = handle;
@@ -16,8 +20,7 @@ public class DeleteFileRequest implements Payload {
 
 	@Override
 	public void unmarshall(ByteBuffer data) throws MarshallingException {
-		// TODO Auto-generated method stub
-		
+		this.handle = data.getInt();
 	}
 
 	@Override
