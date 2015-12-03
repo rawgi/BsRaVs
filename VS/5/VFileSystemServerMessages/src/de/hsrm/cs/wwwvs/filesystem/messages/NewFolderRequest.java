@@ -3,9 +3,7 @@ package de.hsrm.cs.wwwvs.filesystem.messages;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
-import de.hsrm.cs.wwwvs.filesystem.messages.marshalling.Marshaller.MarshallingException;
-
-public class NewFolderRequest implements Payload {
+public class NewFolderRequest implements Payload{
 	private int parent;
 	private String name;
 
@@ -13,31 +11,31 @@ public class NewFolderRequest implements Payload {
 		
 	}
 	
-	public NewFolderRequest(int parent, String name) {
+	public NewFolderRequest(int parent, String name){
 		super();
 		this.parent = parent;
 		this.name = name;
 	}
 
-	public int getParent() {
+	public int getParent(){
 		return parent;
 	}
 
-	public String getName() {
+	public String getName(){
 		return name;
 	}
 
 	@Override
-	public void unmarshall(ByteBuffer data) throws MarshallingException {
+	public void unmarshall(ByteBuffer data) throws MarshallingException{
 		parent = data.getInt();
 		byte length = data.get();
-		byte[] nameAsByte = new byte[length];
-		data.get(nameAsByte, 0, length);
-		name = new String(nameAsByte, Charset.forName("US_ASCII"));
+		byte[] name = new byte[length];
+		data.get(name, 0, length);
+		this.name = new String(name, Charset.forName("US-ASCII"));
 	}
 
 	@Override
-	public byte[] marshall() throws MarshallingException {
+	public byte[] marshall() throws MarshallingException{
 		ByteBuffer result = ByteBuffer.allocate(10+name.length());
 		result.putInt(6+name.length());
 		result.put((byte)3);
@@ -47,5 +45,4 @@ public class NewFolderRequest implements Payload {
 		result.put(string);
 		return result.array();
 	}
-
 }

@@ -10,7 +10,6 @@ import de.hsrm.cs.wwwvs.filesystem.messages.ErrorResponse;
 import de.hsrm.cs.wwwvs.filesystem.messages.FileInfoResponse;
 import de.hsrm.cs.wwwvs.filesystem.messages.FileServerMessage;
 import de.hsrm.cs.wwwvs.filesystem.messages.FolderInfoResponse;
-import de.hsrm.cs.wwwvs.filesystem.messages.NewFileRequest;
 import de.hsrm.cs.wwwvs.filesystem.messages.NewFileResponse;
 import de.hsrm.cs.wwwvs.filesystem.messages.NewFolderResponse;
 import de.hsrm.cs.wwwvs.filesystem.messages.Payload;
@@ -50,7 +49,7 @@ public class Connection {
 			byte[] res = new byte[res_length];
 			in.read(res);
 			ByteBuffer resBB = ByteBuffer.wrap(res);
-			PayloadType resPLT = PayloadType.values()[resBB.get()];
+			PayloadType resPLT = PayloadType.values()[resBB.get()-1];
 			Payload resPL = makePayloadFromType(resPLT.getId());
 			if(resPL != null){
 				resPL.unmarshall(resBB);
