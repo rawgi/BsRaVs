@@ -1,0 +1,39 @@
+Bewertungsbogen Blatt 2
+
+Name: dmatt001                         Ihre Punkte -------------.
+                                       moegliche Punkte ----.    \
+                                                             \    \
+                                                              v    v
+vater.c Soehne erzeugen korrekt umgesetzt                     3 /  3
+        Warten auf Beendigung der Soehne korrekt umgesetzt    3 /  3
+        Sonstige Programmlogik Vater                          2 /  2
+        Geforderte Ausgaben                                   1 /  1
+sohn*.c Ueberlagerung in Soehnen korrekt umgesetzt / exec()   3 /  2
+    - Argumentvektor nicht aufgesetzt (-1)
+        Sonstige Programmlogik Soehne                         2 /  2
+        Geforderte Ausgaben                                   1 /  1
+2.2 (a) MAX_COUNT angepasst                                   1 /  1
+2.2 (b) Erweiterung                                           1 /  1
+2.2 (c) Prozessbaum vorhanden                                 1 /  1
+2.2 (d) Beschreibung                                          1 /  1
+2.2 (d) Zombies erkannt                                       1 /  0,5
+    - Nicht ausreichend. Unter welchen Bedingungen ist ein
+      Sohnprozess im Zombie-Zustand? Warum? (-0,5)
+
+Abzuege bei fehlender Return-Code-Behandlung                 -3 /  -1
+    - Möglicher Fehler von execve() ist nicht behandelt (-1)
+Abzuege bei Compiler-Warnungen                               -2 /  0
+Abzuege Lesbarkeit / Kommentare                              -2 /  0
+
+Gesamtpunkte:                                                20 / 17,5
+
+Bemerkungen:
+
+- Compiler-Warnungen:
+
+- Fehlerbehandlung:
+    Was passiert wenn execve() fehlschlägt?
+    
+Coding-Style:
+- Einrückungen:
+    Spaces nach Komma/Semikolon wären schön, z.B. for(i = 0; i < z; i++)

@@ -29,7 +29,7 @@ public class FileServerMessage implements Marshaller {
 	
 	@Override
 	public void unmarshall(ByteBuffer data) throws MarshallingException{
-		byte plType = data.get();
+		byte plType = data.get(0);
 		switch(plType){
 			case 1: payloadType = PayloadType.NEW_FILE_REQUEST;
 					payload = new NewFileRequest();

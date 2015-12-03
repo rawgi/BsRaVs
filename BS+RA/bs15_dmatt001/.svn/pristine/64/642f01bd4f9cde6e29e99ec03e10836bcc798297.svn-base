@@ -1,0 +1,25 @@
+Dokumentation Aufgabe 2.2 / 2.3
+
+
+Dokumentieren Sie Ihre Beobachtungen!
+
+
+Prozessbaum:
+bash
+  |-vater
+     |-sohn1
+     |-sohn2
+
+Zeitliche Veraenderungen von Zustand und Prioritaet der Prozesse:
+Bei dem Prozess von Sohn1 steht die bereits gelaufene Zeit immer auf 0.
+Bei dem Prozess von Sohn2 hingegen steigt die Zeit immer weiter.
+Das liegt daran, dass Sohn1 10 Sekunden lang schläft und Sohn2 in der Zeit aber tatsächlich etwas tut.
+Nach 10 Sekunden sind dann beide Sohn-Prozesse Zombies, bis der Vater-Prozess beendet wird.
+
+
+Aenderung MAX_COUNT und Prozesszustaende:
+MAX_COUNT musste auf das 2,5-fache erhöht werden, damit der Prozess ca. 10 Sekunden lang ausgeführt wird.
+Dadurch ist der Prozess Sohn2 erst nach 10 Sekunden ein Zombie
+
+
+Arbeitsweise des Schedulers (Optional, Aufgabe 2.3):

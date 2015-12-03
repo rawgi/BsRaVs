@@ -2,6 +2,8 @@ package de.hsrm.cs.wwwvs.filesystem.messages;
 
 import java.nio.ByteBuffer;
 
+import de.hsrm.cs.wwwvs.filesystem.messages.marshalling.Marshaller.MarshallingException;
+
 public class FileInfoRequest implements Payload {
 	private int handle;
 
@@ -20,13 +22,14 @@ public class FileInfoRequest implements Payload {
 
 	@Override
 	public void unmarshall(ByteBuffer data) throws MarshallingException {
-		// TODO Auto-generated method stub
-		
+		this.handle = data.getInt();
 	}
 
 	@Override
 	public byte[] marshall() throws MarshallingException {
-		// TODO Auto-generated method stub
-		return null;
+		ByteBuffer result = ByteBuffer.allocate(9);
+		result.putInt(5);
+		result.put((byte)7);
+		return result.array();
 	}
 }

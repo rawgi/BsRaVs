@@ -34,14 +34,20 @@ public class WriteFileRequest implements Payload {
 	public void unmarshall(ByteBuffer data) throws MarshallingException {
 		handle = data.getInt();
 		offset = data.getInt();
-		data.getInt();											//length überspringen, um an das eigentliche array zu kommen
-		this.data = data.array();
+		this.data = new byte[data.getInt()];
+		data.get(this.data);
 	}
 
 	@Override
 	public byte[] marshall() throws MarshallingException {
-		// TODO Auto-generated method stub
-		return null;
+		ByteBuffer result = ByteBuffer.allocate(17+this.data.length);
+		result.putInt(13+this.data.length);
+		result.put((byte)16);
+		result.putInt(handle);
+		result.putInt(offset);
+		result.putInt(this.data.length);
+		result.put(this.data);
+		return result.array();
 	}
 
 }

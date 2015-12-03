@@ -30,10 +30,7 @@ public class Main {
 			System.exit(-1);
 		}
 
-		Socket socket = new Socket(hostname, port);
-		
-		// TODO hier Verbindung (Socket) zum Server aufbauen
-		
+		Socket socket = new Socket(hostname, port);		
 		
 		Connection con = new Connection(socket);
 		Filesystem fs = new FilesystemImpl(con);

@@ -6,9 +6,11 @@ import java.util.List;
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
 
 public class FilesystemImpl implements Filesystem{
-
+	
+	private Connection con;
+	
 	public FilesystemImpl(Connection con) {
-		// TODO Auto-generated constructor stub
+		this.con = con;
 	}
 
 	@Override

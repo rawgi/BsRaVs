@@ -25,7 +25,9 @@ public class DeleteFileRequest implements Payload {
 
 	@Override
 	public byte[] marshall() throws MarshallingException {
-		// TODO Auto-generated method stub
-		return null;
+		ByteBuffer result = ByteBuffer.allocate(9);
+		result.putInt(5);
+		result.put((byte)5);
+		return result.array();
 	}
 }
