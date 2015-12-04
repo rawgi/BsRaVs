@@ -28,6 +28,7 @@ public class FolderInfoRequest implements Payload{
 		ByteBuffer result = ByteBuffer.allocate(9);
 		result.putInt(5);
 		result.put((byte)9);
+		result.putInt(handle);
 		return result.array();
 	}
 }

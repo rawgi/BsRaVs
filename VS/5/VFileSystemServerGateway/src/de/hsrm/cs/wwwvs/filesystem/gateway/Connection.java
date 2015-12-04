@@ -35,7 +35,6 @@ public class Connection {
 	 */
 	
 	public FileServerMessage remoteOperation(FileServerMessage request) throws MarshallingException, IOException {
-			PayloadType payloadType = request.getPayloadType();
 			InputStream in = socket.getInputStream();
 			OutputStream out = socket.getOutputStream();
 			byte[] req;

@@ -42,7 +42,7 @@ public class WriteFileRequest implements Payload{
 	public byte[] marshall() throws MarshallingException{
 		ByteBuffer result = ByteBuffer.allocate(17+this.data.length);
 		result.putInt(13+this.data.length);
-		result.put((byte)16);
+		result.put((byte)11);
 		result.putInt(handle);
 		result.putInt(offset);
 		result.putInt(this.data.length);

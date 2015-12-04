@@ -28,6 +28,7 @@ public class FileInfoRequest implements Payload{
 		ByteBuffer result = ByteBuffer.allocate(9);
 		result.putInt(5);
 		result.put((byte)7);
+		result.putInt(handle);
 		return result.array();
 	}
 }

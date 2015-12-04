@@ -39,8 +39,8 @@ public class ReadFileRequest implements Payload{
 
 	@Override
 	public byte[] marshall() throws MarshallingException{
-		ByteBuffer result = ByteBuffer.allocate(16);
-		result.putInt(12);
+		ByteBuffer result = ByteBuffer.allocate(17);
+		result.putInt(13);
 		result.put((byte)12);
 		result.putInt(handle);
 		result.putInt(offset);
