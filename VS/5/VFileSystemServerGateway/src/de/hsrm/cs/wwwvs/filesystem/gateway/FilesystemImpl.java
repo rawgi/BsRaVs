@@ -7,6 +7,7 @@ import java.util.List;
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
 import de.hsrm.cs.wwwvs.filesystem.messages.DeleteFileRequest;
 import de.hsrm.cs.wwwvs.filesystem.messages.DeleteFolderRequest;
+import de.hsrm.cs.wwwvs.filesystem.messages.ErrorResponse;
 import de.hsrm.cs.wwwvs.filesystem.messages.FileInfoRequest;
 import de.hsrm.cs.wwwvs.filesystem.messages.FileInfoResponse;
 import de.hsrm.cs.wwwvs.filesystem.messages.FileServerMessage;
@@ -45,6 +46,10 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
 			
 		NewFileResponse response = (NewFileResponse)result.getPayload();
 		
@@ -61,7 +66,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		NewFolderResponse response = (NewFolderResponse)result.getPayload();
 		
 		return response.getHandle();
@@ -71,10 +80,15 @@ public class FilesystemImpl implements Filesystem{
 	public void delete_file(int file) throws IOException {
 		FileServerMessage request = new FileServerMessage(PayloadType.DELETE_FILE_REQUEST, new DeleteFileRequest(file));
 
+		FileServerMessage result = new FileServerMessage();
 		try {
-			con.remoteOperation(request);
+			result = con.remoteOperation(request);
 		} catch (MarshallingException e) {
 			e.printStackTrace();
+		}
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
 		}
 	}
 
@@ -82,10 +96,15 @@ public class FilesystemImpl implements Filesystem{
 	public void delete_folder(int folder) throws IOException {
 		FileServerMessage request = new FileServerMessage(PayloadType.DELETE_FOLDER_REQUEST, new DeleteFolderRequest(folder));
 
+		FileServerMessage result = new FileServerMessage();
 		try {
-			con.remoteOperation(request);
+			result = con.remoteOperation(request);
 		} catch (MarshallingException e) {
 			e.printStackTrace();
+		}
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
 		}
 	}
 
@@ -99,7 +118,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FileInfoResponse response = (FileInfoResponse)result.getPayload();
 		
 		return response.getParent();
@@ -115,7 +138,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FileInfoResponse response = (FileInfoResponse)result.getPayload();
 		
 		return response.getSize();
@@ -130,6 +157,10 @@ public class FilesystemImpl implements Filesystem{
 			result = con.remoteOperation(request);
 		} catch (MarshallingException e) {
 			e.printStackTrace();
+		}
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
 		}
 			
 		FileInfoResponse response = (FileInfoResponse)result.getPayload();
@@ -147,7 +178,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FolderInfoResponse response = (FolderInfoResponse)result.getPayload();
 		
 		return response.getParent();
@@ -164,6 +199,10 @@ public class FilesystemImpl implements Filesystem{
 			e.printStackTrace();
 		}
 			
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FolderInfoResponse response = (FolderInfoResponse)result.getPayload();
 		
 		return response.getName();
@@ -179,7 +218,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FolderInfoResponse response = (FolderInfoResponse)result.getPayload();
 		
 		return response.getFiles().length;
@@ -195,7 +238,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FolderInfoResponse response = (FolderInfoResponse)result.getPayload();
 		return response.getFolders().length;
 	}
@@ -210,7 +257,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FolderInfoResponse response = (FolderInfoResponse)result.getPayload();
 		
 		List<Integer> files = new LinkedList<Integer>();
@@ -232,7 +283,11 @@ public class FilesystemImpl implements Filesystem{
 		} catch (MarshallingException e) {
 			e.printStackTrace();
 		}
-			
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		FolderInfoResponse response = (FolderInfoResponse)result.getPayload();
 		
 		List<Integer> folders = new LinkedList<Integer>();
@@ -247,10 +302,16 @@ public class FilesystemImpl implements Filesystem{
 	public void write_file(int file, int offset, byte[] data) throws IOException {
 		FileServerMessage request = new FileServerMessage(PayloadType.WRITE_FILE_REQUEST, new WriteFileRequest(file, offset, data));
 
+		
+		FileServerMessage result = new FileServerMessage();
 		try {
-			con.remoteOperation(request);
+			result = con.remoteOperation(request);
 		} catch (MarshallingException e) {
 			e.printStackTrace();
+		}
+		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
 		}
 	}
 
@@ -265,8 +326,16 @@ public class FilesystemImpl implements Filesystem{
 			e.printStackTrace();
 		}
 		
+		if(result.getPayloadType() == PayloadType.ERROR_RESPONSE){
+			throwError((ErrorResponse)result.getPayload());
+		}
+		
 		ReadFileResponse response = (ReadFileResponse)result.getPayload();
 		
 		return response.getData();
+	}
+	
+	private void throwError(ErrorResponse error) throws IOException{
+		throw new IOException("Error-Code: "+error.getErrorCode()+"\n msg: "+error.getMsg());
 	}
 }
