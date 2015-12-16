@@ -1,9 +1,10 @@
 package de.hsrm.cs.wwwvs.filesystem;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
-public interface Filesystem {
+public interface Filesystem extends Serializable{
 	
 	/**
 	 * Returns the ID of the root folder of the filesystem 

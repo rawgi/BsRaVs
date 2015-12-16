@@ -1,0 +1,16 @@
+8.1
+a)
+pure: ein Name ist nur ein Bit-Muster und enthält keinerlei wetere Information
+	bsp: UUIDs als Namen von DCOM-Objekten oder Klassen
+impure: ein Name implzert zusätzliche Informationen über das bezeichnete Objekt
+	bsp: DNS-Namen (mail.informatik.fh-wiesbaden.de)
+
+b) ein Name wird als unique bezeichnet, wenn er eindeutig (also höchstens) ein Objekt identifiziert
+	bsp1: Daniel Mattes -> nicht unique (mit Geburtstag und Geburtsort schon)
+	bsp2: UUID (Globally Unique Identifier)
+
+8.2
+a)Ebenen:
+	-Global Layer (High-Level Knoten -> Enstiegspunkte)
+	-Administrative Layer (Namensräume innerhalb ener Organsation)
+	-Managerial Layer (Namensräume mit Namen, die sich häufig ändern)

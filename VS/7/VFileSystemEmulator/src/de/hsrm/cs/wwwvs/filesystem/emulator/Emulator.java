@@ -1,20 +1,21 @@
 package de.hsrm.cs.wwwvs.filesystem.emulator;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
 
-public class Emulator implements Filesystem {
+public class Emulator implements Filesystem, Serializable{
 	
 	private static int idFolderCount = 1;
 	private static int idFileCount = 1;
 	
 	private Folder root = null;
 	
-	private class Folder {
+	private class Folder implements Serializable{
 		private int id;
 		private int parent;
 		private String name;
@@ -66,7 +67,7 @@ public class Emulator implements Filesystem {
 			return null;
 		}
 	}
-	private class File {
+	private class File implements Serializable{
 
 		private int id;
 		private String name;
