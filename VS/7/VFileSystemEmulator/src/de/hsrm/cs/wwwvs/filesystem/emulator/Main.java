@@ -5,24 +5,27 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import javax.annotation.processing.Processor;
-
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
+import de.hsrm.cs.wwwvs.filesystem.emulator.VFileServer.Iface;
+import de.hsrm.cs.wwwvs.filesystem.emulator.VFileServer.Processor;
 
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TServerTransport;
 
+
+
 public class Main {
 
 	/**
 	 * @param args
 	 * @throws AlreadyBoundException
+	 * @throws RemoteException 
 	 */
-	public static void main(String[] args) throws AlreadyBoundException {
+	public static void main(String[] args) throws AlreadyBoundException, RemoteException {
 
-		//bei args[1], damit ich in eclipse die run configs für server und client nicht immer ändern muss.
+		//bei args[1], damit ich in eclipse die run configs fï¿½r server und client nicht immer ï¿½ndern muss.
 		int port = 0;
 		try {
 			port = Integer.parseInt(args[1]);

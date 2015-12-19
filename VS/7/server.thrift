@@ -8,7 +8,7 @@ service VFileServer{
 
 	int new_folder(1:string name, 2:int parent),
 	
-	delete_file(1:int file),
+	void hdelete_file(1:int file),
 
 	void delete_folder(1:int folder),
 
@@ -33,33 +33,4 @@ service VFileServer{
 	void write_file(1:int file, 2:int offset, 3:myBytes data),
 
 	myBytes read_file(1:int file, 2:int offset, 3:int length),
-}
-
-
-
-
-
-thrift --gen java server.thrift
-
-ergebnis java datei in emulator ordner (evtl eigenes package)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

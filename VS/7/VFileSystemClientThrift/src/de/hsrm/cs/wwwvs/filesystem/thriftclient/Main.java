@@ -7,6 +7,7 @@ import org.apache.thrift.transport.TTransport;
 
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
 import de.hsrm.cs.wwwvs.filesystem.cli.ClientCLI;
+import de.hsrm.cs.wwwvs.filesystem.thriftclient.VFileServer.Client;
 
 public class Main {
 
@@ -34,7 +35,7 @@ public class Main {
 		transport.open();
 		
 		TProtocol protocol = new TBinaryProtocol(transport);
-		Client client  new Client(port);
+		Client client = new Client(protocol);
 		Filesystem fs = new ThriftClientImpl(client);
 		new ClientCLI(fs);
 	}
