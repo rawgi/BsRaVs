@@ -4,6 +4,7 @@ import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportException;
 
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
 import de.hsrm.cs.wwwvs.filesystem.cli.ClientCLI;
@@ -29,14 +30,15 @@ public class Main {
 		}
 		
 		// TODO Über Thrift eine Verbindung zum Server aufbauen
-		
-		
-		TTransport transport = new TSocket(hostname, port);
-		transport.open();
-		
-		TProtocol protocol = new TBinaryProtocol(transport);
-		Client client = new Client(protocol);
-		Filesystem fs = new ThriftClientImpl(client);
-		new ClientCLI(fs);
+		try {
+			TTransport transport = new TSocket(hostname, 9090);
+			transport.open();
+			TProtocol protocol = new TBinaryProtocol(transport);
+			Client client = new Client(protocol);
+			Filesystem fs = new ThriftClientImpl(client);
+			new ClientCLI(fs);
+		} catch (TTransportException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -39,7 +39,7 @@ public class Main {
 		try {
 			Registry registry = LocateRegistry.createRegistry(port);
 			registry.bind("MyRMI", fs);
-			System.out.println("bound");
+			System.out.println("rmi bound");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -50,12 +50,10 @@ public class Main {
 		try{
 			TServerTransport transport = new TServerSocket(9090);
 			TServer server = new TSimpleServer(new TServer.Args(transport).processor(processor));
-			
+			System.out.println("thrift bound");
+			server.serve();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 }

@@ -10,9 +10,9 @@ public interface Filesystem extends Remote{
 	 * Returns the ID of the root folder of the filesystem 
 	 * (should be static 0)
 	 * @return 0
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	public int get_root_folder() throws IOException;
+	public int get_root_folder() throws IOException, RemoteException;
 
 	/**
 	 * Creates a new file in the given folder
@@ -23,9 +23,9 @@ public interface Filesystem extends Remote{
 	 *            - ID of the parent folder
 	 * @return the created file on success
 	 * @throws NullPointerException - If name is null
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	public int new_file(String name, int parent) throws IOException;
+	public int new_file(String name, int parent) throws IOException, RemoteException;
 
 	/**
 	 * Creates a new sub folder in the given folder
@@ -36,9 +36,9 @@ public interface Filesystem extends Remote{
 	 *            - ID of the parent folder
 	 * @return the created folder on success
 	 * @throws NullPointerException - If name is null
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	public int new_folder(String name, int parent) throws IOException;
+	public int new_folder(String name, int parent) throws IOException, RemoteException;
 	
 
 	/**
@@ -46,18 +46,18 @@ public interface Filesystem extends Remote{
 	 * 
 	 * @param file
 	 *            - ID of the file
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	public void delete_file(int file) throws IOException;
+	public void delete_file(int file) throws IOException, RemoteException;
 
 	/**
 	 * Deletes the given folder
 	 * 
 	 * @param folder
 	 *            - ID of the folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	public void delete_folder(int folder) throws IOException;
+	public void delete_folder(int folder) throws IOException, RemoteException;
 
 	/**
 	 * Returns the id of the folder this file exists in
@@ -65,9 +65,9 @@ public interface Filesystem extends Remote{
 	 * @param file
 	 *            - ID of the file
 	 * @return The ID of the parent folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	public int get_file_parent(int file) throws IOException;
+	public int get_file_parent(int file) throws IOException, RemoteException;
 
 	/**
 	 * Returns the file size in bytes
@@ -75,9 +75,9 @@ public interface Filesystem extends Remote{
 	 * @param file
 	 *            - ID of the file
 	 * @return The file size
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	public int get_file_size(int file) throws IOException;
+	public int get_file_size(int file) throws IOException, RemoteException;
 
 	/**
 	 * Retrieves the file name of a given file.
@@ -85,9 +85,9 @@ public interface Filesystem extends Remote{
 	 * @param file
 	 *            - ID of the file
 	 * @return the name of the file
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	String get_file_name(int file) throws IOException;
+	String get_file_name(int file) throws IOException, RemoteException;
 
 	/**
 	 * Get the parent folder of a given folder
@@ -95,9 +95,9 @@ public interface Filesystem extends Remote{
 	 * @param folder
 	 *            - The ID of the folder
 	 * @return The ID of the parent folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	int get_folder_parent(int folder) throws IOException;
+	int get_folder_parent(int folder) throws IOException, RemoteException;
 
 	/**
 	 * Retrieves the folder name of a given folder.
@@ -105,9 +105,9 @@ public interface Filesystem extends Remote{
 	 * @param folder
 	 *            - ID of the file
 	 * @return the name of the folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	String get_folder_name(int folder) throws IOException;
+	String get_folder_name(int folder) throws IOException, RemoteException;
 
 	/**
 	 * Returns the number of files in a folder
@@ -115,9 +115,9 @@ public interface Filesystem extends Remote{
 	 * @param folder
 	 *            - ID of the folder
 	 * @return Number of files in the folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	int get_folder_file_count(int folder) throws IOException;
+	int get_folder_file_count(int folder) throws IOException, RemoteException;
 
 	/**
 	 * Returns the number of folders in a folder
@@ -125,9 +125,9 @@ public interface Filesystem extends Remote{
 	 * @param folder
 	 *            - ID of the folder
 	 * @return Number of folders in the folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	int get_folder_folder_count(int folder) throws IOException;
+	int get_folder_folder_count(int folder) throws IOException, RemoteException;
 
 	/**
 	 * Retrieves the files in a folder.
@@ -135,9 +135,9 @@ public interface Filesystem extends Remote{
 	 * @param folder
 	 *            - FolderID of the folder
 	 * @return List of the file IDs of the given folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	List<Integer> get_folder_files(int folder) throws IOException;
+	List<Integer> get_folder_files(int folder) throws IOException, RemoteException;
 
 	/**
 	 * Retrieves the folders in a folder. 
@@ -145,9 +145,9 @@ public interface Filesystem extends Remote{
 	 * @param folder
 	 *            - FolderID of the folder
 	 * @return List of the folder IDs of the given folder
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	List<Integer> get_folder_folders(int folder) throws IOException;
+	List<Integer> get_folder_folders(int folder) throws IOException, RemoteException;
 
 	/**
 	 * Writes bytes to the file. The file will not be deleted before writing
@@ -159,9 +159,9 @@ public interface Filesystem extends Remote{
 	 *            Position to start writing to
 	 * @param data
 	 *            Byte array to write into file
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	void write_file(int file, int offset, byte[] data) throws IOException;
+	void write_file(int file, int offset, byte[] data) throws IOException, RemoteException;
 
 	/**
 	 * Reads <code>length</code> bytes from the file, starting at <code>
@@ -175,8 +175,8 @@ public interface Filesystem extends Remote{
 	 * @param length
 	 *            Number of read bytes
 	 * @return Byte array containing the read bytes
-	 * @throws IOException - if some error occurs
+	 * @throws IOException, RemoteException - if some error occurs
 	 */
-	byte[] read_file(int file, int offset, int length) throws IOException;
+	byte[] read_file(int file, int offset, int length) throws IOException, RemoteException;
 
 }
