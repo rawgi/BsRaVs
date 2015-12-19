@@ -1,13 +1,11 @@
 package de.hsrm.cs.wwwvs.filesystem.rmiclient;
 
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
-import de.hsrm.cs.wwwvs.filesystem.Server;
 import de.hsrm.cs.wwwvs.filesystem.cli.ClientCLI;
 
 public class Main {
@@ -30,12 +28,9 @@ public class Main {
 		}
 
 		// TODO RMI-Stub von der Registry holen	
-		Filesystem fs = null;
 		Registry registry = LocateRegistry.getRegistry(hostname, port);
+		Filesystem fs = (Filesystem) registry.lookup("MyRMI");
 		System.out.println("1");
-		Server server = (Server) registry.lookup("MyRMI");
-		System.out.println(server.test());
-		fs = server.getFS();
 		new ClientCLI(fs);
 	}
 }

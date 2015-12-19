@@ -1,5 +1,10 @@
 package de.hsrm.cs.wwwvs.filesystem.thriftclient;
 
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TSocket;
+import org.apache.thrift.transport.TTransport;
+
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
 import de.hsrm.cs.wwwvs.filesystem.cli.ClientCLI;
 
@@ -23,8 +28,14 @@ public class Main {
 		}
 		
 		// TODO Über Thrift eine Verbindung zum Server aufbauen
-		Filesystem fs = null;
-
+		
+		
+		TTransport transport = new TSocket(hostname, port);
+		transport.open();
+		
+		TProtocol protocol = new TBinaryProtocol(transport);
+		Client client  new Client(port);
+		Filesystem fs = new ThriftClientImpl(client);
 		new ClientCLI(fs);
 	}
 }

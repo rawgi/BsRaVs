@@ -1,21 +1,22 @@
 package de.hsrm.cs.wwwvs.filesystem.emulator;
 
 import java.io.IOException;
-import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.hsrm.cs.wwwvs.filesystem.Filesystem;
 
-public class Emulator implements Filesystem, Serializable{
+public class Emulator extends UnicastRemoteObject  implements Filesystem {
 	
 	private static int idFolderCount = 1;
 	private static int idFileCount = 1;
 	
 	private Folder root = null;
 	
-	private class Folder implements Serializable{
+	private class Folder {
 		private int id;
 		private int parent;
 		private String name;
@@ -53,6 +54,13 @@ public class Emulator implements Filesystem, Serializable{
 			return null;
 		}
 		public File findFile(int id) {
+
+			for (File fi : this.files) {
+				if (fi.id == id) {
+					return fi;
+				}
+			}
+
 			for (Folder f : this.subfolders) {
 				for (File fi : f.files) {
 					if (fi.id == id) {
@@ -67,7 +75,7 @@ public class Emulator implements Filesystem, Serializable{
 			return null;
 		}
 	}
-	private class File implements Serializable{
+	private class File {
 
 		private int id;
 		private String name;
@@ -83,7 +91,7 @@ public class Emulator implements Filesystem, Serializable{
 		}
 	}
 
-	public Emulator() {
+	public Emulator() throws RemoteException{
 		
 		if (this.root == null) {
 			root = new Folder("root", 0, 0);
@@ -93,13 +101,13 @@ public class Emulator implements Filesystem, Serializable{
 	}
 	
 	@Override
-	public int get_root_folder() throws IOException {
+	public int get_root_folder() throws IOException, RemoteException {
 		
 		return root.getId();
 	}
 
 	@Override
-	public int new_file(String name, int parent) throws IOException {
+	public int new_file(String name, int parent) throws IOException, RemoteException {
 		
 		if (name == null) {
 			throw new NullPointerException();
@@ -119,7 +127,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public int new_folder(String name, int parent) throws IOException {
+	public int new_folder(String name, int parent) throws IOException, RemoteException {
 		if (name == null) {
 			throw new NullPointerException();
 		}
@@ -137,7 +145,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public void delete_file(int file) throws IOException {
+	public void delete_file(int file) throws IOException, RemoteException {
 		
 		File toDelete = root.findFile(file);
 		if (toDelete == null) {
@@ -155,7 +163,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public void delete_folder(int folder) throws IOException {
+	public void delete_folder(int folder) throws IOException, RemoteException {
 		
 		Folder toDelete = root.findFolder(folder);
 		if (toDelete == null) {
@@ -172,7 +180,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public int get_file_parent(int file) throws IOException {
+	public int get_file_parent(int file) throws IOException, RemoteException {
 		File f = root.findFile(file);
 		if (f == null) {
 			throw new IOException("File does not exist");
@@ -182,7 +190,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public int get_file_size(int file) throws IOException {
+	public int get_file_size(int file) throws IOException, RemoteException {
 		File f = root.findFile(file);
 		if (f == null) {
 			throw new IOException("File does not exist");
@@ -196,7 +204,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public String get_file_name(int file) throws IOException {
+	public String get_file_name(int file) throws IOException, RemoteException {
 		File f = root.findFile(file);
 		if (f == null) {
 			throw new IOException("File does not exist");
@@ -206,7 +214,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public int get_folder_parent(int folder) throws IOException {
+	public int get_folder_parent(int folder) throws IOException, RemoteException {
 		Folder f = root.findFolder(folder);
 		if (f == null) {
 			throw new IOException("Folder does not exist");
@@ -216,7 +224,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public String get_folder_name(int folder) throws IOException {
+	public String get_folder_name(int folder) throws IOException, RemoteException {
 		Folder f = root.findFolder(folder);
 		if (f == null) {
 			throw new IOException("Folder does not exist");
@@ -226,7 +234,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public int get_folder_file_count(int folder) throws IOException {
+	public int get_folder_file_count(int folder) throws IOException, RemoteException {
 		Folder f = root.findFolder(folder);
 		if (f == null) {
 			throw new IOException("Folder does not exist");
@@ -235,7 +243,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public int get_folder_folder_count(int folder) throws IOException {
+	public int get_folder_folder_count(int folder) throws IOException, RemoteException {
 		Folder f = root.findFolder(folder);
 		if (f == null) {
 			throw new IOException("Folder does not exist");
@@ -244,7 +252,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public List<Integer> get_folder_files(int folder) throws IOException {
+	public List<Integer> get_folder_files(int folder) throws IOException, RemoteException {
 		Folder f = root.findFolder(folder);
 		if (f == null) {
 			throw new IOException("Folder does not exist");
@@ -259,7 +267,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public List<Integer> get_folder_folders(int folder) throws IOException {
+	public List<Integer> get_folder_folders(int folder) throws IOException, RemoteException {
 		Folder f = root.findFolder(folder);
 		if (f == null) {
 			throw new IOException("Folder does not exist");
@@ -275,8 +283,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public void write_file(int file, int offset, byte[] data)
-			throws IOException {
+	public void write_file(int file, int offset, byte[] data) throws IOException, RemoteException {
 		
 		File f = root.findFile(file);
 		if (f == null) {
@@ -299,8 +306,7 @@ public class Emulator implements Filesystem, Serializable{
 	}
 
 	@Override
-	public byte[] read_file(int file, int offset, int length)
-			throws IOException {
+	public byte[] read_file(int file, int offset, int length) throws IOException, RemoteException {
 		
 		File f = root.findFile(file);
 		if (f == null) {
