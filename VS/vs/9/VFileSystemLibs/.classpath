@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="libs/cxf-core-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-bindings-soap-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-bindings-xml-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-databinding-jaxb-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-frontend-jaxws-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-frontend-simple-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-transports-http-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-ws-addr-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-ws-policy-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-rt-wsdl-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-xjc-boolean-3.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-xjc-bug671-3.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-xjc-dv-3.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-xjc-javadoc-3.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-xjc-runtime-3.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-xjc-ts-3.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/jaxb-core-2.2.11.jar"/>
+	<classpathentry kind="lib" path="libs/jaxb-impl-2.2.11.jar"/>
+	<classpathentry kind="lib" path="libs/jaxb-xjc-2.2.11.jar"/>
+	<classpathentry kind="lib" path="libs/jcl-over-slf4j-1.7.12.jar"/>
+	<classpathentry kind="lib" path="libs/neethi-3.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="lib" path="libs/slf4j-jdk14-1.7.12.jar"/>
+	<classpathentry kind="lib" path="libs/stax2-api-3.1.4.jar"/>
+	<classpathentry kind="lib" path="libs/velocity-1.7.jar"/>
+	<classpathentry kind="lib" path="libs/woodstox-core-asl-4.4.1.jar"/>
+	<classpathentry kind="lib" path="libs/wsdl4j-1.6.3.jar"/>
+	<classpathentry kind="lib" path="libs/xmlschema-core-2.2.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
