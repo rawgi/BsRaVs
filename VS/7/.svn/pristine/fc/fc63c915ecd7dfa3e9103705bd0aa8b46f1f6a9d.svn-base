@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VFileSystemServerAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VFileSystemServerCLI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VFileSystemLibs"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/httpclient-4.2.5.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/httpcore-4.2.4.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/junit-4.4.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/libthrift-0.9.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/libthrift-0.9.1.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="/VFileSystemLibs/libs/slf4j-log4j12-1.5.8.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
