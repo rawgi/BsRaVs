@@ -1,0 +1,45 @@
+Bewertungsbogen Blatt 4
+
+Name: dmatt001                         Ihre Punkte -------------.
+                                       moegliche Punkte ----.    \
+                                                             \    \
+                                                              v    v
+gibaus  Threads erstellen und joinen                          2 /  2
+        Ausgaben                                              1 /  1
+        Korrekte Verwendung Semaphoren (1 Sem)                2 /  2
+        Korrekte Verwendung Mutexe (1 Mutex)                  2 /  2
+
+philo   Threads erstellen und joinen                          1 /  1
+        Synchronisierung korrekt (1 Mutex, 5 CVs)             4 /  2,5
+            - cond_init() in gleicher Schleife 
+              wie pthread_create(): Race condition (-0,5)
+            - LEFT Makro ist falsch für index 0 (-0,5)
+            - state[N] unitialisiert (-0,5)
+        Variable Anzahl Philosophen                           1 /  1
+        Test und Dokumentation                                1 /  0,5
+            - Ausgabe ist nicht in Spalten (-0,5)
+
+backen  Threads erstellen und joinen                          1 /  1
+        Ausgaben                                              1 /  1
+        Synchronisierung korrekt (1 Mutex, 2 CVs)             4 /  2
+            - Condition-Variablen nicht initialisiert (-1)
+            - Schleife um cond_wait() fehlt: Spurious wakeup:
+                Deadlock (-1)
+        Mehrere Baecker (Bonus)                               1 /  0
+            - nicht bearbeitet
+
+Abzuege bei fehlender Return-Code-Behandlung                 -3 /  -2,5
+    - Fehler pthread_mutex_xxx(), sem_xxx() unbehandelt (-2)
+    - Programmabbruch im Fehlerfall fehlt meist. (-0,5)
+Abzuege bei Compiler-Warnungen                               -2 /  0
+Abzuege Lesbarkeit / Kommentare                              -2 /  0
+
+Gesamtpunkte:                                 maximal 20 von 21 / 14,5
+
+Gibaus:
+
+Philosophen:
+    
+Baeckerei:
+
+Coding-Style:

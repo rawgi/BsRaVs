@@ -1,0 +1,131 @@
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <semaphore.h>
+#include <fcntl.h> 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+#define RUNDEN     10
+#define N           8		/* Anzahl der Philosophen */
+#define LEFT  (i-1+N)%N		/* Nummer des linken Nachbarn von i  */
+#define RIGHT (i+1)%N		/* Nummer des rechten Nachbarn von i */
+#define THINKING    0		/* Zustand: Denkend */
+#define HUNGRY      1		/* Zust: Versucht, Gabeln zu bekommen*/
+#define EATING      2     
+
+/* Die Struktur der im SHM abgelegten Daten */
+typedef struct{
+	int state[N];
+	sem_t gabelnSuchen;
+	sem_t sem[N];
+}shared_state;
+
+shared_state* myShared;
+
+void test(int i) {
+	if(myShared->state[i] == HUNGRY && myShared->state[LEFT]!=EATING && myShared->state[RIGHT]!=EATING){
+		myShared->state[i]=EATING;
+		sem_post(&(myShared->sem[i]));
+	}
+}
+
+void take_forks(int i) {
+	sem_wait(&(myShared->gabelnSuchen));
+	myShared->state[i] = HUNGRY;
+	test(i);
+	sem_post(&(myShared->gabelnSuchen));
+	sem_wait(&(myShared->sem[i]));
+}
+
+void put_forks(int i) {
+	sem_wait(&(myShared->gabelnSuchen));
+	myShared->state[i] = THINKING;
+	test(LEFT);
+	test(RIGHT);
+	sem_post(&(myShared->gabelnSuchen));
+}
+
+void think(int i){
+	int k;
+	for(k = 0; k<i; k++) printf("            ");
+	printf("phil %d denkt\n", i);
+}
+
+void eat(int i){
+	int k;
+	for(k = 0; k<i; k++) printf("            ");
+	printf("phil %d isst\n", i);
+}
+
+void philosopher(int i){
+	int j;
+	for(j = 0; j<RUNDEN; j++){
+		think(i);
+		take_forks(i);
+		eat(i);
+		put_forks(i);
+	}
+}
+
+int main(int argc, char *argv[]){
+	pid_t fatherPID = getpid();
+	int philNumber, i, terminated = 0, error;
+	printf("Dinierende Philosophen mit Prozessen ...\n\n");
+
+	//zunächst das Shared Memory Segment anlegen
+	myShared = (shared_state*)mmap(NULL, sizeof(shared_state), PROT_WRITE | PROT_READ, MAP_SHARED | MAP_ANONYMOUS, -1, 0);	
+	if(myShared == MAP_FAILED){
+		printf("error mapping Shared Memory Segment\n");
+	}
+
+	//dann die Semaphoren initialisieren
+	error = sem_init(&(myShared->gabelnSuchen), 1, 1);
+	if(error != 0){
+		printf("\nError initializing semaphore. Error: %d\n", error);
+	}
+	for(i = 0; i<N; i++){
+		myShared->state[i] = THINKING; //alle denkend setzen
+		error = sem_init(&(myShared->sem[i]), 1, 1);
+		if(error != 0){
+			printf("\nError initializing semaphore %d. Error: %d\n", i, error);
+		}
+	}
+
+	//philosphen erzeugen
+	for(i = 0; i<N; i++){
+		if(getpid() == fatherPID){
+			fork();
+			philNumber = i; //jeder philosoph merkt sich seine nummer
+		}else{
+			break;
+		}
+	}
+
+	//vater wartet, während die philosphen essen
+	if(getpid() == fatherPID){
+		while(terminated < N){
+			error = wait(NULL);
+			if(error > 0){
+				terminated++;
+			}else if(error < 0){
+				printf("error waiting for child\n");
+			}
+		 }
+		printf("Es sitzt kein Philosoph mehr am Tisch.\nwische Tisch ab und mache Feierabend...\n");
+	}else{
+		philosopher(philNumber); //philosoph mit seiner nummer zu Tisch bitten
+		printf("Ein Philosoph ist satt und verlässt den Tisch.\n");
+	}
+
+	error = munmap(myShared, sizeof(shared_state));
+	if(error < 0){
+		printf("error closing Shared Memory Segment\n");
+		return -1;
+	}
+
+	return 0;
+}

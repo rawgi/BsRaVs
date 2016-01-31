@@ -1,0 +1,44 @@
+Dokumentation Aufgabe 5
+========================
+
+Dokumentieren Sie Ihre Beobachtungen!
+
+
+Aufgabe 5.1 (f)
+----------------
+Nach Starten des Programms erscheint alle vier Sekunden die Ausgabe "Timer abgelaufen".
+Durch senden eines Signals an das Programm, wird sleep unterbrochen und das Programm springt direkt in die für das Signal definierte Methode.
+Anschließend wird ohne Pause wieder "Timer abgelaufen" ausgegeben und die Schleife des Wartens beginnt erneut.
+
+
+Aufgabe 5.2 (d)
+----------------
+Bei pid 0 wird lediglich ausgegeben, um welches Signal es sich handelt. 
+Das liegt daran, dass das Signal hierbei einfach an alle Prozesse der selben Prozessgruppe gesendet wird.
+
+
+Aufgabe 5.3 (g)
+----------------
+
+
+
+Aufgabe 5.3 (h)
+----------------
+
+
+
+Aufgabe 5.4 (e)
+----------------
+
+
+
+Aufgabe 5.5 (f)
+----------------
+
+
+
+Aufgabe 5.5 (g)
+----------------
+
+
+

@@ -1,0 +1,38 @@
+2016-01-21 10:34:52,115 | INFO  | Refreshing org.apache.activemq.xbean.XBeanBrokerFactory$1@3a7e4f0c: startup date [Thu Jan 21 10:34:52 CET 2016]; root of context hierarchy | org.apache.activemq.xbean.XBeanBrokerFactory$1 | main
+2016-01-21 10:34:55,607 | INFO  | PListStore:[/home/daniel/Dokumente/BsRaVs/VS/vs/11/apache-activemq-5.13.0/data/localhost/tmp_storage] started | org.apache.activemq.store.kahadb.plist.PListStoreImpl | main
+2016-01-21 10:34:55,724 | INFO  | Using Persistence Adapter: KahaDBPersistenceAdapter[/home/daniel/Dokumente/BsRaVs/VS/vs/11/apache-activemq-5.13.0/data/kahadb] | org.apache.activemq.broker.BrokerService | main
+2016-01-21 10:34:56,318 | INFO  | Apache ActiveMQ 5.13.0 (localhost, ID:daniel-ThinkPad-32810-1453368896158-0:1) is starting | org.apache.activemq.broker.BrokerService | main
+2016-01-21 10:34:56,384 | INFO  | Listening for connections at: tcp://daniel-ThinkPad:61616?maximumConnections=1000&wireFormat.maxFrameSize=104857600 | org.apache.activemq.transport.TransportServerThreadSupport | main
+2016-01-21 10:34:56,406 | INFO  | Connector openwire started | org.apache.activemq.broker.TransportConnector | main
+2016-01-21 10:34:56,433 | INFO  | Listening for connections at: amqp://daniel-ThinkPad:5672?maximumConnections=1000&wireFormat.maxFrameSize=104857600 | org.apache.activemq.transport.TransportServerThreadSupport | main
+2016-01-21 10:34:56,453 | INFO  | Connector amqp started | org.apache.activemq.broker.TransportConnector | main
+2016-01-21 10:34:56,480 | INFO  | Listening for connections at: stomp://daniel-ThinkPad:61613?maximumConnections=1000&wireFormat.maxFrameSize=104857600 | org.apache.activemq.transport.TransportServerThreadSupport | main
+2016-01-21 10:34:56,499 | INFO  | Connector stomp started | org.apache.activemq.broker.TransportConnector | main
+2016-01-21 10:34:56,524 | INFO  | Listening for connections at: mqtt://daniel-ThinkPad:1883?maximumConnections=1000&wireFormat.maxFrameSize=104857600 | org.apache.activemq.transport.TransportServerThreadSupport | main
+2016-01-21 10:34:56,546 | INFO  | Connector mqtt started | org.apache.activemq.broker.TransportConnector | main
+2016-01-21 10:34:56,984 | INFO  | Listening for connections at ws://daniel-ThinkPad:61614?maximumConnections=1000&wireFormat.maxFrameSize=104857600 | org.apache.activemq.transport.ws.WSTransportServer | main
+2016-01-21 10:34:56,987 | INFO  | Connector ws started | org.apache.activemq.broker.TransportConnector | main
+2016-01-21 10:34:56,998 | INFO  | Apache ActiveMQ 5.13.0 (localhost, ID:daniel-ThinkPad-32810-1453368896158-0:1) started | org.apache.activemq.broker.BrokerService | main
+2016-01-21 10:34:57,007 | INFO  | For help or more information please see: http://activemq.apache.org | org.apache.activemq.broker.BrokerService | main
+2016-01-21 10:34:57,018 | WARN  | Store limit is 102400 mb (current store usage is 0 mb). The data directory: /home/daniel/Dokumente/BsRaVs/VS/vs/11/apache-activemq-5.13.0/data/kahadb only has 1694 mb of usable space - resetting to maximum available disk space: 1694 mb | org.apache.activemq.broker.BrokerService | main
+2016-01-21 10:34:57,028 | WARN  | Temporary Store limit is 51200 mb (current store usage is 0 mb). The data directory: /home/daniel/Dokumente/BsRaVs/VS/vs/11/apache-activemq-5.13.0/data only has 1694 mb of usable space - resetting to maximum available disk space: 1694 mb | org.apache.activemq.broker.BrokerService | main
+2016-01-21 10:34:58,277 | INFO  | No Spring WebApplicationInitializer types detected on classpath | /admin | main
+2016-01-21 10:34:59,147 | INFO  | ActiveMQ WebConsole available at http://0.0.0.0:8161/ | org.apache.activemq.web.WebConsoleStarter | main
+2016-01-21 10:34:59,148 | INFO  | ActiveMQ Jolokia REST API available at http://0.0.0.0:8161/api/jolokia/ | org.apache.activemq.web.WebConsoleStarter | main
+2016-01-21 10:34:59,305 | INFO  | Initializing Spring FrameworkServlet 'dispatcher' | /admin | main
+2016-01-21 10:35:00,237 | INFO  | No Spring WebApplicationInitializer types detected on classpath | /api | main
+2016-01-21 10:35:00,325 | INFO  | jolokia-agent: No access restrictor found at classpath:/jolokia-access.xml, access to all MBeans is allowed | /api | main
+2016-01-21 10:35:37,541 | INFO  | Apache ActiveMQ 5.13.0 (localhost, ID:daniel-ThinkPad-32810-1453368896158-0:1) is shutting down | org.apache.activemq.broker.BrokerService | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,548 | INFO  | Connector openwire stopped | org.apache.activemq.broker.TransportConnector | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,553 | INFO  | Connector amqp stopped | org.apache.activemq.broker.TransportConnector | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,557 | INFO  | Connector stomp stopped | org.apache.activemq.broker.TransportConnector | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,561 | INFO  | Connector mqtt stopped | org.apache.activemq.broker.TransportConnector | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,578 | INFO  | Connector ws stopped | org.apache.activemq.broker.TransportConnector | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,588 | INFO  | PListStore:[/home/daniel/Dokumente/BsRaVs/VS/vs/11/apache-activemq-5.13.0/data/localhost/tmp_storage] stopped | org.apache.activemq.store.kahadb.plist.PListStoreImpl | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,590 | INFO  | Stopping async queue tasks | org.apache.activemq.store.kahadb.KahaDBStore | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,591 | INFO  | Stopping async topic tasks | org.apache.activemq.store.kahadb.KahaDBStore | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,594 | INFO  | Stopped KahaDB | org.apache.activemq.store.kahadb.KahaDBStore | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,767 | INFO  | Apache ActiveMQ 5.13.0 (localhost, ID:daniel-ThinkPad-32810-1453368896158-0:1) uptime 42.139 seconds | org.apache.activemq.broker.BrokerService | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,768 | INFO  | Apache ActiveMQ 5.13.0 (localhost, ID:daniel-ThinkPad-32810-1453368896158-0:1) is shutdown | org.apache.activemq.broker.BrokerService | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,770 | INFO  | Closing org.apache.activemq.xbean.XBeanBrokerFactory$1@3a7e4f0c: startup date [Thu Jan 21 10:34:52 CET 2016]; root of context hierarchy | org.apache.activemq.xbean.XBeanBrokerFactory$1 | ActiveMQ ShutdownHook
+2016-01-21 10:35:37,787 | INFO  | Destroying Spring FrameworkServlet 'dispatcher' | /admin | ActiveMQ ShutdownHook

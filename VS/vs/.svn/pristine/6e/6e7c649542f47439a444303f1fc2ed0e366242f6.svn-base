@@ -1,0 +1,9 @@
+package de.hsrm.cs.wwwvs.primzahlen;
+
+public class PrimzahlenSubscriber {
+
+	public static void main(String[] args) {
+
+	}
+
+}
